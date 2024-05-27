@@ -63,14 +63,7 @@ public class TestDb {
         String url = "jdbc:h2:.\\Office.mv.db";
         try (Connection conn = DriverManager.getConnection(url)){
 
-            int num1 = 0;
             int num2 = 0;
-
-            Statement stm1 = conn.createStatement();
-            ResultSet rsl1 = stm1.executeQuery("select count(*) as total from employee where DepartmentId is null");
-            while (rsl1.next()) {
-                System.out.println(num1 = rsl1.getInt("total"));
-            }
 
             Statement stm2 = conn.createStatement();
             ResultSet rsl2 = stm2.executeQuery("select count(*) as total from employee where DepartmentId = 1");
@@ -78,7 +71,7 @@ public class TestDb {
                 System.out.println(num2 = rsl2.getInt("total"));
             }
             
-            Assertions.assertTrue(num1 > num2);
+            Assertions.assertTrue(num2 == 0);
 
         } catch (SQLException ex) {
             System.out.println(ex);
